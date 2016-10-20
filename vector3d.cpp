@@ -1,10 +1,30 @@
-#include "vector3d.hpp"
+#ifndef VECTOR3D_H
+#define VECTOR3D_H
 
-#include <cmath>
+#include <ostream>
 
-const vector3d vector3d::X = {1, 0, 0};
-const vector3d vector3d::Y = {0, 1, 0};
-const vector3d vector3d::Z = {0, 0, 1};
-const vector3d vector3d::ZERO = {0, 0, 0};
+class vector3d {
+public:
+    int x;
+    int y;
+    int z;
+
+
+    const static vector3d X;
+    const static vector3d Y;
+    const static vector3d Z;
+    const static vector3d ZERO;
+    vector3d();
+    vector3d(int x ,int y, int z);
+    int getX();
+    int getY();
+    int getZ();
+    vector3d operator+(vector3d a);
+    vector3d operator-(vector3d a);
+    vector3d operator*(vector3d a);
+    int vector3d::lenght(vector3d a);
+};
 
 // TODO: дописать
+
+#endif
