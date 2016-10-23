@@ -23,8 +23,12 @@ public:
     vector3d operator-(vector3d a);
     vector3d operator*(vector3d a);
     int vector3d::lenght(vector3d a);
+    vector3d operator^(vector3d a);
+    bool operator==(vector3d a);
+    bool operator!=(vector3d a);
+    int vector3d::normalize(vector3d a);
 };
 
-// TODO: дописать
+
 
 #endif
