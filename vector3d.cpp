@@ -33,7 +33,27 @@ vector3d vector3d::operator*(vector3d a)
     int resz= getZ()*a.getZ();
     return vector3d(resx, resy, resz);
 }
+vector3d vector3d::operator^(vector3d a)
+{
+    int resx= (getY()*a.getZ() - getZ()*a.getY());
+    int resy= (getZ()*a.getY() - getX()*a.getZ());
+    int resz= (getX()*a.getY() - getY()*a.getX());
+    return vector3d(resx, resy, resz);
+}
+bool vector3d::operator==(vector3d a)
+{
+    return (getX()==a.getX() and getY()==a.getY() and getZ()==a.getZ());
+}
+
+bool vector3d::operator!=(vector3d a)
+{
+    return (getX()!=a.getX() or getY()!=a.getY() or getZ()!=a.getZ());
+}
 int vector3d::lenght(vector3d a)
 {
-    return std::sqrt(a.x*a.x+a.y*a.y+a.z*a.z);
+    return std::sqrt(a.getX()*a.getX()+a.getY()*a.getY()+a.getZ()*a.getZ());
+}
+int vector3d::normalize(vector3d a)
+{
+    return (getX()/(a.length()), getY()/(a.length()), getZ()/(a.length()));
 }
