@@ -1,3 +1,4 @@
+
 #include "vector3d.hpp"
 
 #include <cmath>
@@ -8,52 +9,67 @@ const vector3d vector3d::Z = {0, 0, 1};
 const vector3d vector3d::ZERO = {0, 0, 0};
 vector3d::vector3d() :x(0),y(0),z(0) {}
 vector3d::vector3d(int x, int y, int z) :x(x),y(y),z(z) {}
-int vector3d::getX() {return x; }
-int vector3d::getZ() {return z; }
-int vector3d::getY() {return y; }
 
-vector3d vector3d::operator+(vector3d a)
+
+vector3d vector3d::operator+(const vector3d a)const
 {
-    int resx=a.getX()+ getX();
-    int resy=a.getY()+ getY();
-    int resz=a.getZ()+ getZ();
+    int resx=a.x+ x;
+    int resy=a.y+ y;
+    int resz=a.z+ z;
     return vector3d(resx, resy, resz);
 }
-vector3d vector3d::operator-(vector3d a)
+vector3d vector3d::operator-(const vector3d a)const
 {
-    int resx= getX()- a.getX();
-    int resy= getY()- a.getY();
-    int resz= getZ()- a.getZ();
+    int resx= x- a.x;
+    int resy= y- a.y;
+    int resz= z- a.z;
     return vector3d(resx, resy, resz);
 }
-vector3d vector3d::operator*(vector3d a)
+double vector3d::operator*(const vector3d a)const
 {
-    int resx= getX()*a.getX();
-    int resy= getY()*a.getY();
-    int resz= getZ()*a.getZ();
+    int resx= x*a.x;
+    int resy= y*a.y;
+    int resz= z*a.z;
+    return resx+resy+resz;
+}
+vector3d vector3d::operator-()const
+{
+    return vector3d(-x,-y,-z);
+}
+vector3d vector3d::operator^(const vector3d a)const
+{
+    int resx= (y*a.z - z*a.y);
+    int resy= (z*a.x - x*a.z);
+    int resz= (x*a.y - y*a.x);
     return vector3d(resx, resy, resz);
 }
-vector3d vector3d::operator^(vector3d a)
+bool vector3d::operator==(const vector3d a)const
 {
-    int resx= (getY()*a.getZ() - getZ()*a.getY());
-    int resy= (getZ()*a.getY() - getX()*a.getZ());
-    int resz= (getX()*a.getY() - getY()*a.getX());
-    return vector3d(resx, resy, resz);
-}
-bool vector3d::operator==(vector3d a)
-{
-    return (getX()==a.getX() and getY()==a.getY() and getZ()==a.getZ());
+    return (x==a.x and y==a.y and z==a.z);
 }
 
-bool vector3d::operator!=(vector3d a)
+bool vector3d::operator!=(const vector3d a)const
 {
-    return (getX()!=a.getX() or getY()!=a.getY() or getZ()!=a.getZ());
+    return (x!=a.x or y!=a.y or z!=a.z);
 }
-int vector3d::lenght(vector3d a)
+vector3d vector3d::operator*(int b)const
 {
-    return std::sqrt(a.getX()*a.getX()+a.getY()*a.getY()+a.getZ()*a.getZ());
+    return vector3d(x*b,y*b,z*b);
 }
-int vector3d::normalize(vector3d a)
+vector3d operator*(int b, const vector3d a)
 {
-    return (getX()/(a.length()), getY()/(a.length()), getZ()/(a.length()));
+    return vector3d(a.x*b,a.y*b,a.z*b);
+}
+double vector3d::length()
+{
+    return std::sqrt(x*x+y*y+z*z);
+}
+double vector3d::normalize()
+{
+    double lenght=length();
+    x=x/lenght;
+    y=y/lenght;
+    z=z/lenght;
+}
+
 }
