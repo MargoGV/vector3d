@@ -3,6 +3,7 @@
 
 #include <ostream>
 
+
 class vector3d {
 public:
     int x;
@@ -16,19 +17,18 @@ public:
     const static vector3d ZERO;
     vector3d();
     vector3d(int x ,int y, int z);
-    int getX();
-    int getY();
-    int getZ();
-    vector3d operator+(vector3d a);
-    vector3d operator-(vector3d a);
-    vector3d operator*(vector3d a);
-    int vector3d::lenght(vector3d a);
-    vector3d operator^(vector3d a);
-    bool operator==(vector3d a);
-    bool operator!=(vector3d a);
-    int vector3d::normalize(vector3d a);
+    vector3d operator+(const vector3d a)const;
+    vector3d operator-(const vector3d a)const;
+    double operator*(const vector3d a)const;
+    double length();
+    vector3d operator^(const vector3d a)const;
+    bool operator==(const vector3d a)const;
+    bool operator!=(const vector3d a)const;
+    double normalize();
+    vector3d operator*(int b)const;
+    vector3d operator-()const;
 };
 
-
-
+vector3d operator*(int b, const vector3d a);
 #endif
+
