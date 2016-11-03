@@ -8,7 +8,7 @@ const vector3d vector3d::Y = {0, 1, 0};
 const vector3d vector3d::Z = {0, 0, 1};
 const vector3d vector3d::ZERO = {0, 0, 0};
 vector3d::vector3d() :x(0),y(0),z(0) {}
-vector3d::vector3d(int x, int y, int z) :x(x),y(y),z(z) {}
+vector3d::vector3d(double x, double y, double z) :x(x),y(y),z(z) {}
 
 
 vector3d vector3d::operator+(const vector3d a)const
@@ -71,5 +71,8 @@ double vector3d::normalize()
     y=y/lenght;
     z=z/lenght;
 }
+std::ostream &operator<<(std::ostream &stream, const vector3d &a)
+{
 
+    return stream << "{" << a.x << ", " << a.y << ", " << a.z << "}";
 }
